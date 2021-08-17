@@ -25,6 +25,21 @@ devtools::install_local("microeco-master.zip")
 devtools::install_local("mecodev-master.zip")
 ```
 
+## Citation
+Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, 
+FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255, https://doi.org/10.1093/femsec/fiaa255
+
+## All classes
+
+### trans_rarefy
+
+The class trans_rarefy can be used for the rarefaction and the following plotting to 
+see whether the sequencing depth is enough to cover all the taxa in the microbial community.
+
+### trans_convert
+
+The class trans_convert provide several data transformation approaches for the microtable object.
+
 
 ## Contributing
 

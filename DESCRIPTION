@@ -7,11 +7,11 @@ Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
 Description: A set of extended classes based on the microeco package
 Depends: R (>= 3.5.0)
-Imports: R6, microeco, magrittr, ggplot2
+Imports: R6, vegan, microeco, magrittr, ggplot2
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2021-08-08
+Packaged: 2021-08-17
 Repository: github
-Date/Publication: 2021-08-08
+Date/Publication: 2021-08-17
 RoxygenNote: 7.1.1
