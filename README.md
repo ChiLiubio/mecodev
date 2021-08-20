@@ -40,6 +40,16 @@ see whether the sequencing depth is enough to cover all the taxa in the microbia
 
 The class trans_convert provide several data transformation approaches for the microtable object.
 
+### trans_netchord 
+The class trans_netchord is developed to sum and plot the links number from one taxa to another or in the same taxa in the network.
+The input dataset must be a trans_network object.
+
+The R package chorddiag is used for the chord plot in this class and can be installed from Github https://github.com/mattflor/chorddiag
+
+```r
+devtools::install_github("mattflor/chorddiag")
+```
+
 
 ## Contributing
 
