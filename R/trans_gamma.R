@@ -3,7 +3,8 @@
 #'
 #' @description
 #' Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
-#' based on Zhang et al. (2020) <doi:10.1038/s41467-020-19228-4>.
+#' based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
+#' <doi:10.1038/s41467-020-19228-4>. 
 #'
 #' @export
 trans_gamma <- R6Class(classname = "trans_gamma",
@@ -15,10 +16,10 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' @param group default NULL; a column name in sample_table; used as the different species pool for groups.
 		#' @param method default "bray"; dissimilarity indices; see \code{\link{vegdist}} function and method parameter in vegan package.
 		#' @param seed default 123; random seed used for the fixed random number generator for the repeatability.
-		#' @return res_simulation in object.
+		#' @return parameters in object.
 		#' @examples
 		#' \donttest{
-		#' test1 <- trans_gamma$new(ncom =20)
+		#' test1 <- trans_gamma$new(dataset = dataset, group = "Group")
 		#' }		
 		initialize = function(dataset = NULL, group = NULL, method = "bray", seed = 123
 			){
@@ -39,7 +40,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			self$method <- method
 		},
 		#' @description
-		#' This function is used to calculate observed gamma-beta diversity.
+		#' Calculate observed gamma and beta diversity for each group.
 		#'
 		#' @param sample_size default NULL; a numeric vector for the rarefied and uniform individual numbers in each sample; 
 		#'   If null, use the observed data; If provided, use the rarefied data, e.g. c(500, 2000).
@@ -125,7 +126,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' @return ggplot.
 		#' @examples
 		#' \donttest{
-		#' test1$plot_observed(cor_method = "spearman", )
+		#' test1$plot_observed(cor_method = "spearman")
 		#' }
 		plot_observed = function(
 			x_axis_title = "Gamma diversity",
@@ -150,7 +151,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			p
 		},
 		#' @description
-		#' This function is used to simulate gamma-beta diversity relationships under specific species distribution.
+		#' Simulate gamma-beta diversity relationships under log-normal abundance distribution without any measured data.
 		#'
 		#' @param gamma_vect default seq(1, 10000, by = 200); a vector as gamma diversity.
 		#' @param ind_vect default c(500, 1500, 3000, 5500, 10000); a vector as individuals per plot.
@@ -271,6 +272,9 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			cat("trans_gamma class:\n")
 			if(!is.null(self$res_simulation)){
 				cat(paste("Simulation result have", nrow(self$res_simulation), "rows and", ncol(self$res_simulation), "columns ...\n"))
+			}
+			if(!is.null(self$res_observed)){
+				cat(paste("Observed results have been calculated ...\n"))
 			}
 			invisible(self)
 		}

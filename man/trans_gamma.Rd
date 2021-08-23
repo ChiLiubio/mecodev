@@ -5,7 +5,8 @@
 \title{Simulate gamma-beta diversity relationships under specific species distribution.}
 \description{
 Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
-based on Zhang et al. (2020) <doi:10.1038/s41467-020-19228-4>.
+based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
+<doi:10.1038/s41467-020-19228-4>.
 }
 \examples{
 
@@ -14,7 +15,7 @@ based on Zhang et al. (2020) <doi:10.1038/s41467-020-19228-4>.
 ## ------------------------------------------------
 
 \donttest{
-test1 <- trans_gamma$new(ncom =20)
+test1 <- trans_gamma$new(dataset = dataset, group = "Group")
 }		
 
 ## ------------------------------------------------
@@ -30,7 +31,7 @@ test1 <- trans_gamma$new(ncom =20)
 ## ------------------------------------------------
 
 \donttest{
-test1$plot_observed(cor_method = "spearman", )
+test1$plot_observed(cor_method = "spearman")
 }
 
 ## ------------------------------------------------
@@ -84,12 +85,12 @@ This function is used to simulate gamma-beta diversity relationships under speci
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-res_simulation in object.
+parameters in object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-test1 <- trans_gamma$new(ncom =20)
+test1 <- trans_gamma$new(dataset = dataset, group = "Group")
 }		
 }
 \if{html}{\out{</div>}}
@@ -101,7 +102,7 @@ test1 <- trans_gamma$new(ncom =20)
 \if{html}{\out{<a id="method-cal_observed"></a>}}
 \if{latex}{\out{\hypertarget{method-cal_observed}{}}}
 \subsection{Method \code{cal_observed()}}{
-This function is used to calculate observed gamma-beta diversity.
+Calculate observed gamma and beta diversity for each group.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_observed(sample_size = NULL)}\if{html}{\out{</div>}}
 }
@@ -158,7 +159,7 @@ ggplot.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-test1$plot_observed(cor_method = "spearman", )
+test1$plot_observed(cor_method = "spearman")
 }
 }
 \if{html}{\out{</div>}}
@@ -170,7 +171,7 @@ test1$plot_observed(cor_method = "spearman", )
 \if{html}{\out{<a id="method-cal_simulation"></a>}}
 \if{latex}{\out{\hypertarget{method-cal_simulation}{}}}
 \subsection{Method \code{cal_simulation()}}{
-This function is used to simulate gamma-beta diversity relationships under specific species distribution.
+Simulate gamma-beta diversity relationships under log-normal abundance distribution without any measured data.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_simulation(
   gamma_vect = seq(1, 10000, by = 200),

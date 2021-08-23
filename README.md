@@ -54,7 +54,7 @@ devtools::install_github("mattflor/chorddiag")
 
 ### trans_gamma
 The class trans_gamma is developed to explore the relationship between beta diversity and gamma diversity
-based on the study: Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. 
+based on the study: Zhang et al. Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. 
 Nat Commun 11, 5428 (2020); <doi:10.1038/s41467-020-19228-4>.
 The content includes the observed beta-gamma diversity relationship and simulated relationship, and also the plotting.
 
