@@ -38,7 +38,7 @@ trans_netchord <- R6Class(classname = "trans_netchord",
 				link_table_1 <- link_table[link_table[, 3] %in% "-", ]
 				self$res_sum_links_neg <- private$sum_link(taxa_table = taxa_table, link_table = link_table_1, taxa_level = taxa_level)
 			}
-			message('The result is stored in object$res_sum_links_pos and/or object$res_sum_links_neg !')
+			message('The result is stored in object$res_sum_links_pos and/or object$res_sum_links_neg ...')
 		},
 		#' @description
 		#' Plot the summed linkages among taxa using chorddiag package <https://github.com/mattflor/chorddiag>.

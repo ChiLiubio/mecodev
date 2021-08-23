@@ -35,10 +35,12 @@ FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255, https://d
 
 The class trans_rarefy can be used for the rarefaction and the following plotting to 
 see whether the sequencing depth is enough to cover all the taxa in the microbial community.
+See the mecodev part of tutorial (https://chiliubio.github.io/microeco_tutorial/).
 
 ### trans_convert
 
 The class trans_convert provide several data transformation approaches for the microtable object.
+
 
 ### trans_netchord 
 The class trans_netchord is developed to sum and plot the links number from one taxa to another or in the same taxa in the network.
@@ -49,6 +51,12 @@ The R package chorddiag is used for the chord plot in this class and can be inst
 ```r
 devtools::install_github("mattflor/chorddiag")
 ```
+
+### trans_gamma
+The class trans_gamma is developed to explore the relationship between beta diversity and gamma diversity
+based on the study: Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. 
+Nat Commun 11, 5428 (2020); <doi:10.1038/s41467-020-19228-4>.
+The content includes the observed beta-gamma diversity relationship and simulated relationship, and also the plotting.
 
 
 ## Contributing

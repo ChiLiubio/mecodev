@@ -14,7 +14,15 @@ The input dataset must be a trans_network object.
 ## ------------------------------------------------
 
 \donttest{
-t1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
+test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
+}
+
+## ------------------------------------------------
+## Method `trans_netchord$plot_sum_links`
+## ------------------------------------------------
+
+\donttest{
+test1$plot_sum_links(plot_pos = TRUE, plot_num = 10)
 }
 }
 \section{Methods}{
@@ -51,7 +59,7 @@ res_sum_links_pos and res_sum_links_neg in object.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-t1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
+test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
 }
 }
 \if{html}{\out{</div>}}
@@ -86,6 +94,16 @@ Plot the summed linkages among taxa using chorddiag package <https://github.com/
 \subsection{Returns}{
 chorddiag plot
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{\donttest{
+test1$plot_sum_links(plot_pos = TRUE, plot_num = 10)
+}
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
