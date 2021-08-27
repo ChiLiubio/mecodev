@@ -78,7 +78,8 @@ This function is used to simulate gamma-beta diversity relationships under speci
 
 \item{\code{group}}{default NULL; a column name in sample_table; used as the different species pool for groups.}
 
-\item{\code{method}}{default "bray"; dissimilarity indices; see \code{\link{vegdist}} function and method parameter in vegan package.}
+\item{\code{method}}{default "bray"; dissimilarity indices; see \code{\link{vegdist}} function and method parameter in vegan package;
+or "wei_unifrac" or "unwei_unifrac" in microtable$cal_betadiv().}
 
 \item{\code{seed}}{default 123; random seed used for the fixed random number generator for the repeatability.}
 }
@@ -104,7 +105,7 @@ test1 <- trans_gamma$new(dataset = dataset, group = "Group")
 \subsection{Method \code{cal_observed()}}{
 Calculate observed gamma and beta diversity for each group.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_observed(sample_size = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_observed(sample_size = NULL, unifrac = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -112,6 +113,8 @@ Calculate observed gamma and beta diversity for each group.
 \describe{
 \item{\code{sample_size}}{default NULL; a numeric vector for the rarefied and uniform individual numbers in each sample; 
 If null, use the observed data; If provided, use the rarefied data, e.g. c(500, 2000).}
+
+\item{\code{unifrac}}{default FALSE; whether unifrac index should be calculated; only useful when method = "wei_unifrac" or "unwei_unifrac".}
 }
 \if{html}{\out{</div>}}
 }

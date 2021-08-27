@@ -14,7 +14,8 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#'
 		#' @param dataset default NULL; microtable object; used for the observed pattern.
 		#' @param group default NULL; a column name in sample_table; used as the different species pool for groups.
-		#' @param method default "bray"; dissimilarity indices; see \code{\link{vegdist}} function and method parameter in vegan package.
+		#' @param method default "bray"; dissimilarity indices; see \code{\link{vegdist}} function and method parameter in vegan package;
+		#' or "wei_unifrac" or "unwei_unifrac" in microtable$cal_betadiv().
 		#' @param seed default 123; random seed used for the fixed random number generator for the repeatability.
 		#' @return parameters in object.
 		#' @examples
@@ -35,7 +36,12 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 				}
 			}
 			if(!is.null(dataset)){
-				self$dataset <- dataset
+				use_dataset <- clone(dataset)
+				use_dataset$rep_fasta <- NULL
+				use_dataset$taxa_abund <- NULL
+				use_dataset$alpha_diversity <- NULL
+				use_dataset$beta_diversity <- NULL
+				self$dataset <- use_dataset
 			}
 			self$method <- method
 		},
@@ -44,12 +50,13 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#'
 		#' @param sample_size default NULL; a numeric vector for the rarefied and uniform individual numbers in each sample; 
 		#'   If null, use the observed data; If provided, use the rarefied data, e.g. c(500, 2000).
+		#' @param unifrac default FALSE; whether unifrac index should be calculated; only useful when method = "wei_unifrac" or "unwei_unifrac".
 		#' @return res_observed in object.
 		#' @examples
 		#' \donttest{
 		#'  test1$cal_observed(sample_size = NULL)
 		#' }
-		cal_observed = function(sample_size = NULL){
+		cal_observed = function(sample_size = NULL, unifrac = FALSE){
 			method <- self$method
 
 			if(is.null(self$dataset)){
@@ -76,13 +83,14 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 				gamma_obs <- c()
 				for(j in all_groups){
 					use_data1 <- clone(use_data)
-					use_data1$sample_table %<>% subset(Group == j)
+					use_data1$sample_table %<>% .[.[, self$group] == j, ]
+
 					if(is.null(sample_size)){
 						use_data1$tidy_dataset()
 					}else{
 						suppressMessages(use_data1$rarefy_samples(sample.size = used_sample_size[i]))
 					}
-					suppressMessages(use_data1$cal_betadiv())
+					suppressMessages(use_data1$cal_betadiv(method = method, unifrac = unifrac))
 					beta_partition.bdisper <- vegan::betadisper(as.dist(use_data1$beta_diversity[[method]]), group = rep(1, times = nrow(use_data1$sample_table)), type="centroid")
 					beta_partition.distance <- mean(beta_partition.bdisper$distances)
 					beta_obs_mean <- c(beta_obs_mean, beta_partition.distance)

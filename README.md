@@ -29,13 +29,15 @@ devtools::install_local("mecodev-master.zip")
 Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, 
 FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255, https://doi.org/10.1093/femsec/fiaa255
 
+## Tutorial
+See the mecodev part of tutorial (https://chiliubio.github.io/microeco_tutorial/mecodev-package.html).
+
 ## All classes
 
 ### trans_rarefy
 
 The class trans_rarefy can be used for the rarefaction and the following plotting to 
 see whether the sequencing depth is enough to cover all the taxa in the microbial community.
-See the mecodev part of tutorial (https://chiliubio.github.io/microeco_tutorial/).
 
 ### trans_convert
 
@@ -54,9 +56,8 @@ devtools::install_github("mattflor/chorddiag")
 
 ### trans_gamma
 The class trans_gamma is developed to explore the relationship between beta diversity and gamma diversity
-based on the study: Zhang et al. Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. 
-Nat Commun 11, 5428 (2020); <doi:10.1038/s41467-020-19228-4>.
-The content includes the observed beta-gamma diversity relationship and simulated relationship, and also the plotting.
+based on the study Zhang et al. (2020).
+The content includes the observed beta-gamma diversity relationship and simulated beta-gamma diversity relationship, and also the plotting.
 
 
 ## Contributing
@@ -66,7 +67,9 @@ Any idea/suggestion will be considered.
 By participating in this project you agree to abide by the terms outlined in the [Contributor Code of Conduct](CONDUCT.md).
 
 
-
+## References
+  - Zhang et al. Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020); <doi:10.1038/s41467-020-19228-4>.
+  - Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255.
 
 
 
