@@ -5,6 +5,8 @@
 #' Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
 #' based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
 #' <doi:10.1038/s41467-020-19228-4>. 
+#' The beta diversity is defined as the average distance-to-centroid value and
+#' measured as the average distance (or compositional dissimilarity) from one sample to the centroid of the group.
 #'
 #' @export
 trans_gamma <- R6Class(classname = "trans_gamma",
@@ -20,7 +22,9 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' @return parameters in object.
 		#' @examples
 		#' \donttest{
-		#' test1 <- trans_gamma$new(dataset = dataset, group = "Group")
+		#' library(microeco)
+		#' data(dataset)
+		#' test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 		#' }		
 		initialize = function(dataset = NULL, group = NULL, method = "bray", seed = 123
 			){
@@ -191,14 +195,15 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 
 			for (i in seq_along(ind_vect)) {
 				beta_obs_mean <- NULL
-				cat(paste0("Runs: ind_vect at ", ind_vect[i], "\n"))
+				cat(paste0("## Runs: ind_vect at ", ind_vect[i], "\n"))
 				for(j in seq_along(gamma_vect)){
 					# cat(paste0("Runs: ind_vect at ", ind_vect[i], " gamma_vect at ", gamma_vect[j], "\n"))
 					# obtain the simulated communities
 					simulated_communities = NULL
 					k = 0
 					while(k < ncom){
-						simulated_communities <- rbind(simulated_communities, private$sim_com(gamma_d = gamma_vect[j], alpha_d = ind_vect[i]))
+						# use cv_abund = 1 temporarily. Little effect
+						simulated_communities <- rbind(simulated_communities, private$sim_com(gamma_d = gamma_vect[j], alpha_d = ind_vect[i], cv_abund = 1))
 						k <- k + 1
 					}
 
