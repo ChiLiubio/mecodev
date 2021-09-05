@@ -20,6 +20,7 @@ trans_convert <- R6Class(classname = "trans_convert",
 			{
 			abund_table <- dataset$otu_table
 			abund_table <- t(abund_table)
+			# Now abund_table is a matrix, rows: sample, cols: features
 			self$abund_table <- abund_table
 			self$dataset <- dataset
 		},
@@ -62,18 +63,26 @@ trans_convert <- R6Class(classname = "trans_convert",
 			}
 			# Centered log-ratio normalization
 			if(method == "CLR"){
-				if(!require(SpiecEasi)){
-					stop("SpiecEasi package is not installed! See https://github.com/zdk123/SpiecEasi for installation.")
-				}
 				if(is.null(MARGIN)){
 					MARGIN <- 2
 				}
-				res_table <- SpiecEasi::clr(abund_table, marg = MARGIN, base = logbase)
+				res_table <- apply(abund_table, MARGIN = MARGIN, function(x){
+					private$clr_vec(vec = x, base = logbase, ...)
+				})
 			}
-			
 			res_dataset <- clone(self$dataset)
 			res_dataset$otu_table <- as.data.frame(t(res_table))
 			res_dataset
+		}
+	),
+	private = list(
+		# modified from SpiecEasi package
+		# base for log transformation
+		# tol tolerance for a numerical zero
+		clr_vec = function(vec, base = exp(1), tol = .Machine$double.eps){
+			nzero <- (vec >= tol)
+			LOG <- log(ifelse(nzero, vec, 1), base)
+			ifelse(nzero, LOG - mean(LOG)/mean(nzero), 0.0)
 		}
 	),
 	lock_objects = FALSE,

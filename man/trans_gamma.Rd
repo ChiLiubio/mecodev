@@ -6,7 +6,9 @@
 \description{
 Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
 based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
-<doi:10.1038/s41467-020-19228-4>.
+<doi:10.1038/s41467-020-19228-4>. 
+The beta diversity is defined as the average distance-to-centroid value and
+measured as the average distance (or compositional dissimilarity) from one sample to the centroid of the group.
 }
 \examples{
 
@@ -15,7 +17,9 @@ based on Zhang et al. (2020). Local community assembly mechanisms shape soil bac
 ## ------------------------------------------------
 
 \donttest{
-test1 <- trans_gamma$new(dataset = dataset, group = "Group")
+library(microeco)
+data(dataset)
+test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 }		
 
 ## ------------------------------------------------
@@ -91,7 +95,9 @@ parameters in object.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-test1 <- trans_gamma$new(dataset = dataset, group = "Group")
+library(microeco)
+data(dataset)
+test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 }		
 }
 \if{html}{\out{</div>}}
