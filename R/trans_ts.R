@@ -2,7 +2,7 @@
 #' Biomass evaluation and biological interaction prediction for Time Series Data analysis.
 #'
 #' @description
-#' Biomass evaluation and biological interaction prediction for Time Series Data analysis based on the method Use method from BEEM package
+#' Biomass evaluation and biological interaction prediction for Time Series Data analysis based on the method from BEEM package, Li et al. 2019. <doi: 10.1186/s40168-019-0729-z>.
 #'
 #' @export
 trans_ts <- R6Class(classname = "trans_ts",
@@ -66,6 +66,13 @@ trans_ts <- R6Class(classname = "trans_ts",
 		#' t1$cal_biomass(min_iter = 50)
 		cal_biomass = function(min_iter = 30, max_iter = 100, verbose = TRUE, scaling = 10000, seed = 1, ...)
 			{
+			
+			if(!require(beem)){
+				stop("beem package not installed! See https://github.com/ChiLiubio/mecodev for the installation !")
+			}
+			message("Please also cite the original article: Li et al. <doi:10.1186/s40168-019-0729-z>")
+			message("An expectation-maximization algorithm enables accurate ecological modeling using longitudinal microbiome sequencing data. Microbiome, (2019) 7:118.\n")
+
 			abund_table <- self$abund_table
 			sample_table <- self$sample_table
 			
@@ -80,7 +87,7 @@ trans_ts <- R6Class(classname = "trans_ts",
 				...
 				)
 			
-			biomass <- biomassFromEM(res, dev = 0.5)
+			biomass <- biomassFromEM(res)
 			param <- paramFromEM(res, abund_table, sample_table)
 			
 			self$res_biomass <- biomass
@@ -95,7 +102,7 @@ trans_ts <- R6Class(classname = "trans_ts",
 		#' t1$t1$cal_network()
 		cal_network = function(sig = 0.05){
 			if(!require(igraph)){
-				stop("igraph package not installed")
+				stop("igraph package not installed !")
 			}
 			if(is.null(self$res_param)){
 				stop("Please first run cal_biomass function !")

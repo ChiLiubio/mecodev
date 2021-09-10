@@ -4,7 +4,7 @@
 \alias{trans_ts}
 \title{Biomass evaluation and biological interaction prediction for Time Series Data analysis.}
 \description{
-Biomass evaluation and biological interaction prediction for Time Series Data analysis based on the method Use method from BEEM package
+Biomass evaluation and biological interaction prediction for Time Series Data analysis based on the method from BEEM package, Li et al. 2019. <doi: 10.1186/s40168-019-0729-z>.
 }
 \examples{
 
