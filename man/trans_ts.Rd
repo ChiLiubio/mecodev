@@ -48,7 +48,9 @@ Prepare data for the following analysis.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dataset}}{the object of \code{\link{microtable}} Class.}
+\item{\code{dataset}}{the object of \code{\link{microtable}} class.
+Two columns with exact names in sample_table are necessary; one is 'Time', which is the time point and should be the numeric class;
+the other is 'Rep', which represents the biological replicates and is also numeric class. If no replicates, use 1 to represent 1 replicate.}
 
 \item{\code{filter_thres}}{default 0.001; the relative abundance threshold of taxa.}
 }

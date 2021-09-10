@@ -10,7 +10,9 @@ trans_ts <- R6Class(classname = "trans_ts",
 		#' @description
 		#' Prepare data for the following analysis.
 		#' 
-		#' @param dataset the object of \code{\link{microtable}} Class.
+		#' @param dataset the object of \code{\link{microtable}} class.
+		#'   Two columns with exact names in sample_table are necessary; one is 'Time', which is the time point and should be the numeric class;
+		#'   the other is 'Rep', which represents the biological replicates and is also numeric class. If no replicates, use 1 to represent 1 replicate.
 		#' @param filter_thres default 0.001; the relative abundance threshold of taxa. 
 		#' @return abund_table and sample_table stored in the object.
 		#' @examples
