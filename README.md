@@ -76,7 +76,7 @@ devtools::install_github('csb5/beem')
 
 ### trans_gamma
 The class trans_gamma is developed to explore the relationship between beta diversity and gamma diversity
-based on the study Zhang et al. (2020).
+based on the study Zhang et al.(2020).
 The content includes the observed beta-gamma diversity relationship and simulated beta-gamma diversity relationship, and also the plotting.
 
 

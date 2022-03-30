@@ -14,9 +14,9 @@ trans_netchord <- R6Class(classname = "trans_netchord",
 		#'
 		#' @param dataset default NULL; trans_network object.
 		#' @param taxa_level default "Phylum"; taxonomic rank.
-		#' @return res_sum_links_pos and res_sum_links_neg in object.
+		#' @return res_sum_links_pos and/or res_sum_links_neg in object.
 		#' @examples
-		#' \donttest{
+		#' \dontrun{
 		#' test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
 		#' }
 		initialize = function(dataset = NULL, taxa_level = "Phylum")
@@ -30,20 +30,29 @@ trans_netchord <- R6Class(classname = "trans_netchord",
 			taxa_table <- dataset$use_tax
 			network <- dataset$res_network
 			link_table <- data.frame(t(sapply(1:ecount(network), function(x) ends(network, x))), label = E(network)$label, stringsAsFactors = FALSE)
+			# check the edge label
+			if(! any(c("+", "-") %in% link_table[, 3])){
+				stop("Please check the edge labels! The labels should be + or - !")
+			}
 			if("+" %in% link_table[, 3]){
 				link_table_1 <- link_table[link_table[, 3] %in% "+", ]
 				self$res_sum_links_pos <- private$sum_link(taxa_table = taxa_table, link_table = link_table_1, taxa_level = taxa_level)
+				message('The positive results are stored in object$res_sum_links_pos ...')
+			}else{
+				message('No positive edges found ...')
 			}
 			if("-" %in% link_table[, 3]){
 				link_table_1 <- link_table[link_table[, 3] %in% "-", ]
 				self$res_sum_links_neg <- private$sum_link(taxa_table = taxa_table, link_table = link_table_1, taxa_level = taxa_level)
+				message('The negative results are stored in object$res_sum_links_neg ...')
+			}else{
+				message('No negative edges found ...')
 			}
-			message('The result is stored in object$res_sum_links_pos and/or object$res_sum_links_neg ...')
 		},
 		#' @description
 		#' Plot the summed linkages among taxa using chorddiag package <https://github.com/mattflor/chorddiag>.
 		#'
-		#' @param plot_pos default TRUE; plot the summed positive or negative linkages.
+		#' @param plot_pos default TRUE; If TRUE, plot the summed positive linkages; If FALSE, plot the summed negative linkages.
 		#' @param plot_num default NULL; number of taxa presented in the plot.
 		#' @param color_values default NULL; If not provided, use default.
 		#' @return chorddiag plot
@@ -66,6 +75,10 @@ trans_netchord <- R6Class(classname = "trans_netchord",
 				}
 			}
 			if(!is.null(plot_num)){
+				if(plot_num > ncol(use_data)){
+					message("The plot_num provided is larger than the total taxa number! Use the taxa number instead of it ...")
+					plot_num <- ncol(use_data)
+				}
 				use_data %<>% .[1:plot_num, 1:plot_num]
 			}
 			if(is.null(color_values)){

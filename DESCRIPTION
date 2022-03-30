@@ -11,7 +11,7 @@ Imports: R6, vegan, microeco, magrittr, ggplot2
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2021-08-17
+Packaged: 2022-03-30
 Repository: github
-Date/Publication: 2021-08-17
-RoxygenNote: 7.1.1
+Date/Publication: 2022-03-30
+RoxygenNote: 7.1.2

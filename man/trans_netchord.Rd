@@ -13,7 +13,7 @@ The input dataset must be a trans_network object.
 ## Method `trans_netchord$new`
 ## ------------------------------------------------
 
-\donttest{
+\dontrun{
 test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
 }
 
@@ -54,11 +54,11 @@ This is very useful to fast see how many nodes are connected between different t
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-res_sum_links_pos and res_sum_links_neg in object.
+res_sum_links_pos and/or res_sum_links_neg in object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{\donttest{
+\preformatted{\dontrun{
 test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum")
 }
 }
@@ -83,7 +83,7 @@ Plot the summed linkages among taxa using chorddiag package <https://github.com/
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{plot_pos}}{default TRUE; plot the summed positive or negative linkages.}
+\item{\code{plot_pos}}{default TRUE; If TRUE, plot the summed positive linkages; If FALSE, plot the summed negative linkages.}
 
 \item{\code{plot_num}}{default NULL; number of taxa presented in the plot.}
 
