@@ -24,10 +24,17 @@ trans_netchord <- R6Class(classname = "trans_netchord",
 			if(is.null(dataset)){
 				stop("The dataset should not be NULL!")
 			}
+			if(!inherits(dataset, "trans_network")){
+				stop("The dataset should be a trans_network object!")
+			}
 			if(!require(igraph)){
 				stop("igraph package not installed!")
 			}
-			taxa_table <- dataset$use_tax
+			if(is.null(dataset$tax_table)){
+				stop("The dataset must have the a tax_table! Please check your trans_network object when creating it!")
+			}else{
+				taxa_table <- dataset$tax_table
+			}
 			network <- dataset$res_network
 			link_table <- data.frame(t(sapply(1:ecount(network), function(x) ends(network, x))), label = E(network)$label, stringsAsFactors = FALSE)
 			# check the edge label
