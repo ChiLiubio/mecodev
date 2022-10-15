@@ -87,7 +87,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 				y_axis_title <- alphadiv
 			}
 			
-			p <- ggplot(rarefy_data, aes_string(x = "seqnum", y = alphadiv, color = color, fill = color)) +
+			p <- ggplot(rarefy_data, aes_string(x = "seqnum", y = alphadiv, color = color, fill = color, group = "SampleID")) +
 				scale_color_manual(values = color_values) +
 				xlab(x_axis_title) +
 				ylab(y_axis_title)

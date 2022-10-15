@@ -30,15 +30,15 @@ t1$t1$cal_network()
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{trans_ts$new()}}
-\item \href{#method-cal_biomass}{\code{trans_ts$cal_biomass()}}
-\item \href{#method-cal_network}{\code{trans_ts$cal_network()}}
-\item \href{#method-clone}{\code{trans_ts$clone()}}
+\item \href{#method-trans_ts-new}{\code{trans_ts$new()}}
+\item \href{#method-trans_ts-cal_biomass}{\code{trans_ts$cal_biomass()}}
+\item \href{#method-trans_ts-cal_network}{\code{trans_ts$cal_network()}}
+\item \href{#method-trans_ts-clone}{\code{trans_ts$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-trans_ts-new"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_ts-new}{}}}
 \subsection{Method \code{new()}}{
 Prepare data for the following analysis.
 \subsection{Usage}{
@@ -70,8 +70,8 @@ t1 <- trans_ts$new(dataset = gut_microb_ts, filter_thres = 0)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-cal_biomass"></a>}}
-\if{latex}{\out{\hypertarget{method-cal_biomass}{}}}
+\if{html}{\out{<a id="method-trans_ts-cal_biomass"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_ts-cal_biomass}{}}}
 \subsection{Method \code{cal_biomass()}}{
 Predict the biomass.
 \subsection{Usage}{
@@ -115,8 +115,8 @@ res_biomass and res_param stored in the object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-cal_network"></a>}}
-\if{latex}{\out{\hypertarget{method-cal_network}{}}}
+\if{html}{\out{<a id="method-trans_ts-cal_network"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_ts-cal_network}{}}}
 \subsection{Method \code{cal_network()}}{
 Extract network result from EM results.
 \subsection{Usage}{
@@ -143,8 +143,8 @@ res_network stored in the object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-trans_ts-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_ts-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

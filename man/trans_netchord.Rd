@@ -28,15 +28,15 @@ test1$plot_sum_links(plot_pos = TRUE, plot_num = 10)
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{trans_netchord$new()}}
-\item \href{#method-plot_sum_links}{\code{trans_netchord$plot_sum_links()}}
-\item \href{#method-print}{\code{trans_netchord$print()}}
-\item \href{#method-clone}{\code{trans_netchord$clone()}}
+\item \href{#method-trans_netchord-new}{\code{trans_netchord$new()}}
+\item \href{#method-trans_netchord-plot_sum_links}{\code{trans_netchord$plot_sum_links()}}
+\item \href{#method-trans_netchord-print}{\code{trans_netchord$print()}}
+\item \href{#method-trans_netchord-clone}{\code{trans_netchord$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-trans_netchord-new"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_netchord-new}{}}}
 \subsection{Method \code{new()}}{
 This function is used to sum the links number from one taxa to another or in the same taxa, for example, at Phylum level.
 This is very useful to fast see how many nodes are connected between different taxa or within the taxa.
@@ -68,8 +68,8 @@ test1 <- trans_netchord$new(dataset = trans_network_object, taxa_level = "Phylum
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot_sum_links"></a>}}
-\if{latex}{\out{\hypertarget{method-plot_sum_links}{}}}
+\if{html}{\out{<a id="method-trans_netchord-plot_sum_links"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_netchord-plot_sum_links}{}}}
 \subsection{Method \code{plot_sum_links()}}{
 Plot the summed linkages among taxa using chorddiag package <https://github.com/mattflor/chorddiag>.
 \subsection{Usage}{
@@ -106,8 +106,8 @@ test1$plot_sum_links(plot_pos = TRUE, plot_num = 10)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-trans_netchord-print"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_netchord-print}{}}}
 \subsection{Method \code{print()}}{
 Print the trans_netchord object.
 \subsection{Usage}{
@@ -116,8 +116,8 @@ Print the trans_netchord object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-trans_netchord-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_netchord-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

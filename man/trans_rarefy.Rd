@@ -28,15 +28,15 @@ t1$plot_rarefy()
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{trans_rarefy$new()}}
-\item \href{#method-plot_rarefy}{\code{trans_rarefy$plot_rarefy()}}
-\item \href{#method-print}{\code{trans_rarefy$print()}}
-\item \href{#method-clone}{\code{trans_rarefy$clone()}}
+\item \href{#method-trans_rarefy-new}{\code{trans_rarefy$new()}}
+\item \href{#method-trans_rarefy-plot_rarefy}{\code{trans_rarefy$plot_rarefy()}}
+\item \href{#method-trans_rarefy-print}{\code{trans_rarefy$print()}}
+\item \href{#method-trans_rarefy-clone}{\code{trans_rarefy$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-trans_rarefy-new"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_rarefy-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{trans_rarefy$new(dataset = NULL, alphadiv = "Shannon", depth = NULL)}\if{html}{\out{</div>}}
@@ -69,8 +69,8 @@ t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot_rarefy"></a>}}
-\if{latex}{\out{\hypertarget{method-plot_rarefy}{}}}
+\if{html}{\out{<a id="method-trans_rarefy-plot_rarefy"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_rarefy-plot_rarefy}{}}}
 \subsection{Method \code{plot_rarefy()}}{
 Plotting the rarefied result.
 \subsection{Usage}{
@@ -128,8 +128,8 @@ t1$plot_rarefy()
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-trans_rarefy-print"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_rarefy-print}{}}}
 \subsection{Method \code{print()}}{
 Print the trans_rarefy object.
 \subsection{Usage}{
@@ -138,8 +138,8 @@ Print the trans_rarefy object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-trans_rarefy-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_rarefy-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

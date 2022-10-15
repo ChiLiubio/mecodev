@@ -57,18 +57,18 @@ test1$plot_simulation()
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{trans_gamma$new()}}
-\item \href{#method-cal_observed}{\code{trans_gamma$cal_observed()}}
-\item \href{#method-plot_observed}{\code{trans_gamma$plot_observed()}}
-\item \href{#method-cal_simulation}{\code{trans_gamma$cal_simulation()}}
-\item \href{#method-plot_simulation}{\code{trans_gamma$plot_simulation()}}
-\item \href{#method-print}{\code{trans_gamma$print()}}
-\item \href{#method-clone}{\code{trans_gamma$clone()}}
+\item \href{#method-trans_gamma-new}{\code{trans_gamma$new()}}
+\item \href{#method-trans_gamma-cal_observed}{\code{trans_gamma$cal_observed()}}
+\item \href{#method-trans_gamma-plot_observed}{\code{trans_gamma$plot_observed()}}
+\item \href{#method-trans_gamma-cal_simulation}{\code{trans_gamma$cal_simulation()}}
+\item \href{#method-trans_gamma-plot_simulation}{\code{trans_gamma$plot_simulation()}}
+\item \href{#method-trans_gamma-print}{\code{trans_gamma$print()}}
+\item \href{#method-trans_gamma-clone}{\code{trans_gamma$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-trans_gamma-new"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-new}{}}}
 \subsection{Method \code{new()}}{
 This function is used to simulate gamma-beta diversity relationships under specific species distribution.
 \subsection{Usage}{
@@ -106,8 +106,8 @@ test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-cal_observed"></a>}}
-\if{latex}{\out{\hypertarget{method-cal_observed}{}}}
+\if{html}{\out{<a id="method-trans_gamma-cal_observed"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-cal_observed}{}}}
 \subsection{Method \code{cal_observed()}}{
 Calculate observed gamma and beta diversity for each group.
 \subsection{Usage}{
@@ -139,8 +139,8 @@ res_observed in object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot_observed"></a>}}
-\if{latex}{\out{\hypertarget{method-plot_observed}{}}}
+\if{html}{\out{<a id="method-trans_gamma-plot_observed"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-plot_observed}{}}}
 \subsection{Method \code{plot_observed()}}{
 Plot the observed result.
 \subsection{Usage}{
@@ -177,8 +177,8 @@ test1$plot_observed(cor_method = "spearman")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-cal_simulation"></a>}}
-\if{latex}{\out{\hypertarget{method-cal_simulation}{}}}
+\if{html}{\out{<a id="method-trans_gamma-cal_simulation"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-cal_simulation}{}}}
 \subsection{Method \code{cal_simulation()}}{
 Simulate gamma-beta diversity relationships under log-normal abundance distribution without any measured data.
 \subsection{Usage}{
@@ -215,8 +215,8 @@ test1 <- t1$cal_simulation(ncom =20)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-plot_simulation"></a>}}
-\if{latex}{\out{\hypertarget{method-plot_simulation}{}}}
+\if{html}{\out{<a id="method-trans_gamma-plot_simulation"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-plot_simulation}{}}}
 \subsection{Method \code{plot_simulation()}}{
 Plot the simulation result.
 \subsection{Usage}{
@@ -264,8 +264,8 @@ test1$plot_simulation()
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-trans_gamma-print"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-print}{}}}
 \subsection{Method \code{print()}}{
 Print the trans_gamma object.
 \subsection{Usage}{
@@ -274,8 +274,8 @@ Print the trans_gamma object.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-trans_gamma-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_gamma-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

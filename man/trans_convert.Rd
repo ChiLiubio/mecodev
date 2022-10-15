@@ -25,14 +25,14 @@ newdataset <- t1$convert(method = "log")
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{trans_convert$new()}}
-\item \href{#method-convert}{\code{trans_convert$convert()}}
-\item \href{#method-clone}{\code{trans_convert$clone()}}
+\item \href{#method-trans_convert-new}{\code{trans_convert$new()}}
+\item \href{#method-trans_convert-convert}{\code{trans_convert$convert()}}
+\item \href{#method-trans_convert-clone}{\code{trans_convert$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-trans_convert-new"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_convert-new}{}}}
 \subsection{Method \code{new()}}{
 Get a transposed abundance table in the object. Rows are samples and columns are features. 
 This can make the further operations same with the traditional ecological methods.
@@ -61,8 +61,8 @@ t1 <- trans_convert$new(dataset = dataset)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-convert"></a>}}
-\if{latex}{\out{\hypertarget{method-convert}{}}}
+\if{html}{\out{<a id="method-trans_convert-convert"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_convert-convert}{}}}
 \subsection{Method \code{convert()}}{
 The function offers some methods based on the \code{\link{decostand}} function in vegan package and several famous methods in microbial field.
 MARGIN = 1 to represent samples, i.e. rows and MARGIN = 2 to represent features, i.e. columns.
@@ -111,8 +111,8 @@ a new microtable object; rows are features.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-trans_convert-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-trans_convert-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
