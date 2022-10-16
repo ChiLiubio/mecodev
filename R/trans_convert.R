@@ -14,6 +14,7 @@ trans_convert <- R6Class(classname = "trans_convert",
 		#' @param dataset the object of \code{\link{microtable}} Class.
 		#' @return transposed abundance table stored in the object.
 		#' @examples
+		#' library(microeco)
 		#' data(dataset)
 		#' t1 <- trans_convert$new(dataset = dataset)
 		initialize = function(dataset = NULL)

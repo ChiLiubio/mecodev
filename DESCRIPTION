@@ -1,17 +1,17 @@
 Package: mecodev
 Type: Package
 Title: A set of extended classes based on the microeco package
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: c(person("Chi", "Liu", role = c("aut", "cre"), email = "liuchi0426@126.com"))
 Author: Chi Liu [aut, cre]
 Maintainer: Chi Liu <liuchi0426@126.com>
 Description: A set of extended classes based on the microeco package
 Depends: R (>= 3.5.0)
-Imports: R6, vegan, microeco, magrittr, ggplot2
+Imports: R6, microeco (>= 0.12.0), magrittr, ggplot2, vegan
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2022-05-24
+Packaged: 2022-10-16
 Repository: github
-Date/Publication: 2022-05-24
-RoxygenNote: 7.1.2
+Date/Publication: 2022-10-16
+RoxygenNote: 7.2.1

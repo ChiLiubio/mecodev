@@ -27,7 +27,7 @@ test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 ## ------------------------------------------------
 
 \donttest{
- test1$cal_observed(sample_size = NULL)
+test1$cal_observed(sample_size = NULL)
 }
 
 ## ------------------------------------------------
@@ -43,7 +43,7 @@ test1$plot_observed(cor_method = "spearman")
 ## ------------------------------------------------
 
 \donttest{
-test1 <- t1$cal_simulation(ncom =20)
+test1$cal_simulation(ncom = 20, ind_vect = c(200, 1000, 2000))
 }
 
 ## ------------------------------------------------
@@ -130,7 +130,7 @@ res_observed in object.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
- test1$cal_observed(sample_size = NULL)
+test1$cal_observed(sample_size = NULL)
 }
 }
 \if{html}{\out{</div>}}
@@ -206,7 +206,7 @@ res_simulation in object.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-test1 <- t1$cal_simulation(ncom =20)
+test1$cal_simulation(ncom = 20, ind_vect = c(200, 1000, 2000))
 }
 }
 \if{html}{\out{</div>}}

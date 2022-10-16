@@ -58,7 +58,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' @return res_observed in object.
 		#' @examples
 		#' \donttest{
-		#'  test1$cal_observed(sample_size = NULL)
+		#' test1$cal_observed(sample_size = NULL)
 		#' }
 		cal_observed = function(sample_size = NULL, unifrac = FALSE){
 			method <- self$method
@@ -171,7 +171,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' @return res_simulation in object.
 		#' @examples
 		#' \donttest{
-		#' test1 <- t1$cal_simulation(ncom =20)
+		#' test1$cal_simulation(ncom = 20, ind_vect = c(200, 1000, 2000))
 		#' }
 		cal_simulation = function(
 			gamma_vect = seq(1, 10000, by = 200),
@@ -251,7 +251,11 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			add_fitting = FALSE,
 			...
 			){
-			res_sim <- self$res_simulation
+			if(is.null(self$res_simulation)){
+				stop("Please first run cal_simulation function!")
+			}else{
+				res_sim <- self$res_simulation
+			}
 
 			plot_data <- res_sim %>%
 				cbind.data.frame(Sample = rownames(.), ., stringsAsFactors = FALSE) %>%

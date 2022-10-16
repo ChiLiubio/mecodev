@@ -13,6 +13,7 @@ The input dataset must be a microtable object.
 ## Method `trans_convert$new`
 ## ------------------------------------------------
 
+library(microeco)
 data(dataset)
 t1 <- trans_convert$new(dataset = dataset)
 
@@ -52,7 +53,8 @@ transposed abundance table stored in the object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{data(dataset)
+\preformatted{library(microeco)
+data(dataset)
 t1 <- trans_convert$new(dataset = dataset)
 }
 \if{html}{\out{</div>}}

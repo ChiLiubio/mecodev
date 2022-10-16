@@ -13,6 +13,7 @@ Rarefaction based on the microtable rarefy_samples function and plotting based o
 ## ------------------------------------------------
 
 \donttest{
+library(microeco)
 data(dataset)
 t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 }
@@ -22,7 +23,7 @@ t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 ## ------------------------------------------------
 
 \donttest{
-t1$plot_rarefy()
+t1$plot_rarefy(color = "Group")
 }
 }
 \section{Methods}{
@@ -59,6 +60,7 @@ res_rarefy stored in the object.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
+library(microeco)
 data(dataset)
 t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 }
@@ -119,7 +121,7 @@ ggplot.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\donttest{
-t1$plot_rarefy()
+t1$plot_rarefy(color = "Group")
 }
 }
 \if{html}{\out{</div>}}

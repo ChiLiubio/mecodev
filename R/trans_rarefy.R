@@ -13,6 +13,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		#' @return res_rarefy stored in the object.
 		#' @examples
 		#' \donttest{
+		#' library(microeco)
 		#' data(dataset)
 		#' t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 		#' }
@@ -59,7 +60,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		#' @return ggplot.
 		#' @examples
 		#' \donttest{
-		#' t1$plot_rarefy()
+		#' t1$plot_rarefy(color = "Group")
 		#' }
 		plot_rarefy = function(
 			color_values = RColorBrewer::brewer.pal(8, "Dark2"),

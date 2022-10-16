@@ -2,7 +2,7 @@
 
 A set of extended classes based on the microeco package
 
-![](https://img.shields.io/badge/Test-Ver0.1.0-red.svg)
+![](https://img.shields.io/badge/Test-Ver0.2.0-red.svg)
 
 
 ## Install
@@ -12,11 +12,10 @@ Install mecodev from github. Please first install microeco package https://githu
 ```r
 # If devtools package is not installed, first install it
 install.packages("devtools")
-# then install mecodev
 devtools::install_github("ChiLiubio/mecodev")
 ```
 
-If the installation from github is failed because of the bad internet, download the packages first, then install them locally.
+If the installation from github is failed online, download the package first, then install it locally.
 
 ```r
 devtools::install_local("mecodev-master.zip")
@@ -40,16 +39,6 @@ see whether the sequencing depth is enough to cover all the taxa in the microbia
 
 The class trans_convert provide several data transformation approaches for the microtable object.
 
-
-### trans_netchord 
-The class trans_netchord is developed to sum and plot the links number from one taxa to another or in the same taxa in the network.
-The input dataset must be a trans_network object.
-
-The R package chorddiag is used for the chord plot in this class and can be installed from Github https://github.com/mattflor/chorddiag
-
-```r
-devtools::install_github("mattflor/chorddiag")
-```
 
 ### trans_ts
 

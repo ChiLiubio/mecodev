@@ -19,13 +19,18 @@ t1 <- trans_ts$new(dataset = gut_microb_ts, filter_thres = 0)
 ## Method `trans_ts$cal_biomass`
 ## ------------------------------------------------
 
+\dontrun{
 t1$cal_biomass(min_iter = 50)
+}
 
 ## ------------------------------------------------
 ## Method `trans_ts$cal_network`
 ## ------------------------------------------------
 
-t1$t1$cal_network()
+\dontrun{
+# t2 is a trans_network object used for network analysis
+t2 <- t1$cal_network()
+}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -57,7 +62,7 @@ the other is 'Rep', which represents the biological replicates and is also numer
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-abund_table and sample_table stored in the object.
+microtable object stored in the object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
@@ -107,7 +112,9 @@ res_biomass and res_param stored in the object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{t1$cal_biomass(min_iter = 50)
+\preformatted{\dontrun{
+t1$cal_biomass(min_iter = 50)
+}
 }
 \if{html}{\out{</div>}}
 
@@ -120,22 +127,27 @@ res_biomass and res_param stored in the object.
 \subsection{Method \code{cal_network()}}{
 Extract network result from EM results.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trans_ts$cal_network(sig = 0.05)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{trans_ts$cal_network(sig = 0.05, add_taxa_name = "Phylum")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{sig}}{significance threshold for the interaction evaluation (default: 0.05)}
+\item{\code{sig}}{default 0.05 significance threshold for the interaction evaluation (default: 0.05).}
+
+\item{\code{add_taxa_name}}{default "Phylum"; one or more taxonomic rank name; used to add taxonomic rank name to network node properties.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-res_network stored in the object.
+trans_network object
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{t1$t1$cal_network()
+\preformatted{\dontrun{
+# t2 is a trans_network object used for network analysis
+t2 <- t1$cal_network()
+}
 }
 \if{html}{\out{</div>}}
 
