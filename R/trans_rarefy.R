@@ -20,20 +20,19 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		initialize = function(dataset = NULL, alphadiv = "Shannon", depth = NULL)
 			{
 			res <- data.frame()
-			samplenames <- rownames(dataset$sample_table)
 			for(i in depth){
 				use_data <- clone(dataset)
 				if(i == 0){
 					suppressMessages(use_data$cal_alphadiv(measures = alphadiv))
-					inter_res <- use_data$alpha_diversity[, alphadiv]
-					inter_res[inter_res > 0] <- 0
-					inter_res <- data.frame(SampleID = samplenames, seqnum = i, inter_res)
+					inter_res <- use_data$alpha_diversity[, alphadiv, drop = FALSE]
+					inter_res[, 1] <- 0
+					inter_res <- cbind.data.frame(SampleID = rownames(inter_res), seqnum = i, value = inter_res[, 1])
 				}else{
 					message("Rarefy data at depth ", i," ...")
-					suppressMessages(use_data$rarefy_samples(sample.size = i))
+					use_data$rarefy_samples(sample.size = i)
 					suppressMessages(use_data$cal_alphadiv(measures = alphadiv))
-					inter_res <- use_data$alpha_diversity[, alphadiv]
-					inter_res <- data.frame(SampleID = samplenames, seqnum = i, inter_res)
+					inter_res <- use_data$alpha_diversity[, alphadiv, drop = FALSE]
+					inter_res <- data.frame(SampleID = rownames(inter_res), seqnum = i, value = inter_res[, 1])
 				}
 				res <- rbind(res, inter_res)
 			}
