@@ -7,7 +7,7 @@ A set of extended classes based on the microeco package
 
 ## Install
 
-Install mecodev from github. Please first install microeco package https://github.com/ChiLiubio/microeco
+Install mecodev from github.
 
 ```r
 # If devtools package is not installed, first install it
@@ -21,53 +21,12 @@ If the installation from github is failed online, download the package first, th
 devtools::install_local("mecodev-master.zip")
 ```
 
-## Citation
-Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, 
-FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255. https://doi.org/10.1093/femsec/fiaa255
-
 ## Tutorial
 See the mecodev part of tutorial (https://chiliubio.github.io/microeco_tutorial/mecodev-package.html).
 
-## All classes
-
-### trans_rarefy
-
-The class trans_rarefy can be used for the rarefaction and the following plotting to 
-see whether the sequencing depth is enough to cover all the taxa in the microbial community.
-
-### trans_convert
-
-The class trans_convert provide several data transformation approaches for the microtable object.
-
-
-### trans_ts
-
-The class trans_ts is designed for the time series data analysis.
-Currently, the biomass estimation and biological interaction prediction based on the gLV model 
-are implemented based on the beem package, Li et al. 2019. <doi: 10.1186/s40168-019-0729-z>.
-The R package beem should be first installed from Github https://github.com/lch14forever/BEEM
-
-```r
-# For windows system:
-install.packages("doMC", repos="http://R-Forge.R-project.org")
-# For linux or mac
-install.packages("doMC")
-```
-
-```r
-# Then run
-install.packages("lokern")
-install.packages("monomvn")
-install.packages("pspline")
-devtools::install_github('csb5/beem')
-```
-
-
-### trans_gamma
-The class trans_gamma is developed to explore the relationship between beta diversity and gamma diversity
-based on the study Zhang et al.(2020).
-The content includes the observed beta-gamma diversity relationship and simulated beta-gamma diversity relationship, and also the plotting.
-
+## Citation
+Chi Liu, Yaoming Cui, Xiangzhen Li, Minjie Yao, microeco: an R package for data mining in microbial community ecology, 
+FEMS Microbiology Ecology, Volume 97, Issue 2, February 2021, fiaa255. https://doi.org/10.1093/femsec/fiaa255
 
 ## Contributing
 
