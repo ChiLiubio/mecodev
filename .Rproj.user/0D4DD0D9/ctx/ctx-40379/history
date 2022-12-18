@@ -1,0 +1,512 @@
+print(dataset)
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tidy_dataset()
+print(dataset)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset
+dataset$tidy_dataset()
+dataset
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+dataset$save_abund(dirpath = "taxa_abund")
+dataset$cal_alphadiv(PD = TRUE)
+dataset$save_alphadiv(dirpath = "alpha_diversity")
+dataset$cal_betadiv(unifrac = TRUE)
+dataset$save_betadiv(dirpath = "beta_diversity")
+library(microeco)
+# test
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tidy_dataset()
+print(dataset)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset
+dataset$tidy_dataset()
+dataset
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+dataset$save_abund(dirpath = "taxa_abund")
+dataset$cal_alphadiv(PD = TRUE)
+dataset$save_alphadiv(dirpath = "alpha_diversity")
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.001)
+?tril
+Matrix::tril
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.002)
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.002)
+?lower.tri
+?tril
+?lower.tri
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.002)
+class(c(1,2))
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.002)
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_network$new(dataset = dataset, cal_cor = "SparCC", taxa_level = "OTU", filter_thres = 0.002)
+t1$res_cor_p$cor[1:6, 1:9]
+system.file("extdata", "FAPROTAX_1.2.1", package="microeco")
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset$tidy_dataset()
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t2 <- trans_func$new(dataset)
+t2$cal_biogeo()
+library(microeco)
+data(sample_info)
+data(otu_table)
+data(taxonomy_table)
+data(phylo_tree)
+data(env_data)
+set.seed(123)
+theme_set(theme_bw())
+use_sample_names <- lapply(unique(sample_info$Group), function(x) rownames(sample_info[sample_info$Group == x, ])[1:30]) %>% unlist
+dataset <- microtable$new(sample_table = sample_info[use_sample_names, ], otu_table = otu_table, tax_table = taxonomy_table, phylo_tree = phylo_tree)
+dataset$tidy_dataset()
+print(dataset)
+dataset$tax_table %<>% base::subset(Kingdom == "k__Archaea" | Kingdom == "k__Bacteria")
+# This will remove any line containing the taxa word regardless of word case in the tax_table.
+dataset$filter_pollution(taxa = c("mitochondria", "chloroplast"))
+dataset
+dataset$rarefy_samples(sample.size = 10000)
+dataset$cal_abund()
+t1 <- trans_diff$new(dataset = dataset, method = "lefse", group = "Group", alpha = 0.01, lefse_subgroup = NULL)
+library(microeco)
+?install.packages
+library(microeco)
+?microtable
+microtable
+trans_abund
+?trans_abund
+library(microeco)
+?trans_diff
+library(microeco)
+?trans_network
+?trans_abund
+library(microeco)
+?trans_abund
+library(microeco)
+?mantel
+library(microeco)
+?trans_abund
+library(microeco)
+?microtable
+library(microeco)
+?trans_diff
+?microtable
+?trans_abund
+?trans_venn
+?trans_alpha
+?trans_beta
+?trans_diff
+library(microeco)
+dataset
+t1 <- trans_diff$new(dataset = dataset, method = "lefse", group = "Group", alpha = 0.01, lefse_subgroup = NULL)
+t1$plot_lefse_bar(LDA_score = 4)
+t1$plot_diff_abund(use_number = 1:30)
+t1$plot_lefse_cladogram(use_taxa_num = 200, use_feature_num = 50, clade_label_level = 4)
+t1 <- trans_diff$new(dataset = dataset, method = "rf", group = "Group", rf_taxa_level = "Genus")
+# t1$res_rf is the result stored in the object
+# plot the result
+t2 <- t1$plot_diff_abund(use_number = 1:20, only_abund_plot = FALSE)
+gridExtra::grid.arrange(t2$p1, t2$p2, ncol=2, nrow = 1, widths = c(2,2))
+test <- t1$res_abund
+View(test)
+group = "Group"
+colnames(test)[colnames(test) == group] <- "test1"
+View(test)
+rm(test)
+View(t1$res_rf)
+library(microeco)
+citation("microeco")
+library(microeco)
+citation("microeco")
+?trans_env
+?trans_nullmodel
+?trans_network
+library(microeco)
+?trans_func
+trans_func$func_group_list
+library(microeco)
+library(phyloseq)
+data("dataset")
+x1 <- meco2phyloseq(dataset)
+x1
+x1@otu_table@taxa_are_rows
+class(x1@otu_table@.Data)
+otu_table_trans <- as.data.frame(physeq@otu_table@.Data)
+physeq <- x1
+otu_table_trans <- as.data.frame(physeq@otu_table@.Data)
+class(otu_table_trans)
+View(otu_table_trans)
+class(physeq@sam_data)
+class(physeq@sam_data@.Data)
+class(sample_data(physeq))
+class(physeq@sam_data@.Data)
+sample_table_trans <- data.frame(sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+class(sample_table_trans)
+View(sample_table_trans)
+class(physeq@tax_table)
+class(physeq@tax_table@.Data)
+sample_table_trans <- as.data.frame(sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+View(sample_table_trans)
+class(sample_table_trans)
+tax_table_trans <- as.data.frame((physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+View(tax_table_trans)
+class(tax_table_trans)
+class(physeq@phy_tree)
+isTRUE(physeq@otu_table@taxa_are_rows)
+physeq@otu_table@taxa_are_rows
+library(phyloseq)
+phyloseq2meco <- function(physeq){
+if(physeq@otu_table@taxa_are_rows){
+otu_table_trans <- as.data.frame(physeq@otu_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+}else{
+otu_table_trans <- as.data.frame(t(physeq@otu_table@.Data), check.names = FALSE, stringsAsFactors = FALSE)
+}
+sample_table_trans <- data.frame(sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+phylo_tree_trans <- physeq@phy_tree
+dataset <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, tax_table = tax_table_trans, phylo_tree = phylo_tree_trans)
+dataset
+}
+data("GlobalPatterns")
+x1 <- phyloseq2meco(GlobalPatterns)
+x1
+x1$tidy_dataset()
+x1
+phyloseq2meco <- function(physeq){
+if(physeq@otu_table@taxa_are_rows){
+otu_table_trans <- as.data.frame(physeq@otu_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+}else{
+otu_table_trans <- as.data.frame(t(physeq@otu_table@.Data), check.names = FALSE, stringsAsFactors = FALSE)
+}
+sample_table_trans <- data.frame(sample_data(physeq), check.names = FALSE, stringsAsFactors = FALSE)
+tax_table_trans <- as.data.frame(physeq@tax_table@.Data, check.names = FALSE, stringsAsFactors = FALSE)
+tax_table_trans %<>% tidy_taxonomy
+phylo_tree_trans <- physeq@phy_tree
+dataset <- microtable$new(sample_table = sample_table_trans, otu_table = otu_table_trans, tax_table = tax_table_trans, phylo_tree = phylo_tree_trans)
+dataset
+}
+x1 <- phyloseq2meco(GlobalPatterns)
+library(magrittr)
+x1 <- phyloseq2meco(GlobalPatterns)
+x1
+x1$tidy_dataset()
+x1
+all_names <- paste0("S", 1:5)
+all_names
+expand.grid(all_names, all_names)
+rm(list = ls())
+library(microeco)
+install.packages("reshape2")
+library(reshape2)
+install.packages("plyr")
+library(reshape2)
+library(microeco)
+?microtable
+data(sample_info_16S)
+data(otu_table_16S)
+data(taxonomy_table_16S)
+data(phylo_tree_16S)
+dataset <- microtable$new(sample_table = sample_info_16S, otu_table = otu_table_16S, tax_table = taxonomy_table_16S, phylo_tree = phylo_tree_16S)
+dataset$tidy_dataset()
+print(dataset)
+dataset$sample_sums()
+?'%<>%'
+?trans_network
+library(microeco)
+devtools::load_all(".")
+library(microeco)
+data(dataset)
+x1 <- clone(dataset)
+rownames(x1$sample_table)
+rownames(x1$sample_table) <- paste0("S", 1:90)
+rownames(x1$sample_table)
+x1$tidy_dataset()
+x1
+x1 <- clone(dataset)
+rownames(x1$sample_table) <- paste0("S", 1:90)
+sample_names <- intersect(rownames(x1$sample_table), colnames(x1$otu_table))
+sample_names
+length(sample_names) == 0
+?stop
+x1
+x1$sample_names()
+library(microeco)
+x1 <- clone(dataset)
+rownames(x1$sample_table) <- paste0("S", 1:90)
+x1$tidy_dataset()
+x1
+?message
+library(microeco)
+x1 <- clone(dataset)
+x1
+rownames(x1$sample_table) <- paste0("S", 1:90)
+x1$tidy_dataset()
+microtable
+microtable$portable
+microtable$public_methods
+microtable$public_methods$tidy_dataset()
+microtable$public_methods$tidy_dataset
+library(microeco)
+x1
+x1 <- clone(dataset)
+rownames(x1$sample_table) <- paste0("S", 1:90)
+x1$tidy_dataset()
+library(microeco)
+install.packages("R6")
+install.packages("roxygen2")
+install.packages(data.table)
+install.packages("data.table")
+install.packages("vegan")
+install.packages("tibble")
+install.packages("ggplot2")
+library(ape)
+install.packages("ape")
+install.packages("dplyr")
+library(microeco)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("phyloseq")
+# If a package is not installed, it will be installed from CRAN.
+# First select the packages of interest
+packages <- c("reshape2", "GUniFrac", "MASS", "ggpubr", "randomForest", "ggdendro", "ggrepel", "agricolae", "gridExtra", "picante", "pheatmap", "igraph", "rgexf", "RJSONIO", "ggalluvial")
+# Now check or install
+lapply(packages, function(x) {
+if(!require(x, character.only = TRUE)) {
+install.packages(x, dependencies = TRUE)
+}})
+BiocManager::install("ggtree")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("ggtree")
+library(ggtree)
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("ggtree")
+install.packages("aplot")
+install.packages("rvcheck")
+library(tidytree)
+install.packages("tidytree")
+install.packages("treeio")
+BiocManager::install("treeio")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("treeio")
+install.packages("D:/R/treeio_1.14.3.tar.gz", repos = NULL, type = "source")
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("ggtree")
+install.packages("D:/R/ggtree_2.4.1.tar.gz", repos = NULL, type = "source")
+install.packages(system.file("extdata", "biom_0.3.12.tar.gz", package="microeco"), repos = NULL, type = "source")
+install.packages("plyr")
+install.packages(system.file("extdata", "qiimer_0.9.4.tar.gz", package="microeco"), repos = NULL, type = "source")
+install.packages(system.file("extdata", "Tax4Fun_0.3.1.tar.gz", package="microeco"), repos = NULL, type = "source")
+library(microeco)
+library(Tax4Fun)
+library(microeco)
+data("dataset")
+?trans_diff
+t1 <- trans_diff$new(dataset = dataset, method = "mseq", group = "Group")
+View(t1$res_ms)
+obj_1
+library(microeco)
+library(magrittr)
+# show the ITS dataset preprocessing, the functional identification of OTUs and functional redundancy of modules
+data(sample_info_ITS)
+data(otu_table_ITS)
+data(taxonomy_table_ITS)
+# create microtable object
+dataset <- microtable$new(sample_table = sample_info_ITS, otu_table = otu_table_ITS, tax_table = taxonomy_table_ITS)
+# remove the taxa not assigned in the Kingdom "k__Fungi"
+dataset$tax_table %<>% base::subset(Kingdom == "k__Fungi")
+# use tidy_dataset() to make OTUs and samples information consistent across files
+dataset$tidy_dataset()
+# Identify microbial traits
+# create object of trans_func
+t2 <- trans_func$new(dataset)
+# mapping the taxonomy to the database
+# the function can recognize prokaryotes or fungi automatically.
+t2$cal_spe_func()
+# return t2$res_spe_func, 1 represent function exists, 0 represent no or cannot confirmed.
+t2$res_spe_func[1:5, 1:2]
+t2$cal_spe_func_perc(use_community = TRUE)
+# return t2$res_spe_func_perc
+# we only plot some important traits, so we use the default group list to filter and show the traits.
+t2$plot_spe_func_perc()
+t2 <- trans_func$new(dataset)
+# mapping the taxonomy to the database
+# the function can recognize prokaryotes or fungi automatically.
+t2$cal_spe_func(fungi_database = "FungalTraits")
+t2$res_spe_func[1:5, 1:2]
+t2$cal_spe_func_perc(use_community = TRUE)
+# return t2$res_spe_func_perc
+# we only plot some important traits, so we use the default group list to filter and show the traits.
+t2$plot_spe_func_perc()
+library(microeco)
+?message
+?strwrap
+strwrap(prefix = " ", initial = "",
+"The fungi database is developed based on the FungalTraits. Please also cite the original paper:
+FungalTraits: Põlme, S., Abarenkov, K., Henrik Nilsson, R. et al. FungalTraits: a user-friendly traits database of fungi and fungus-like stramenopiles.
+Fungal Diversity 105, 1–16 (2020). <doi:10.1007/s13225-020-00466-2>.\n")
+library(microeco)
+library(Tax4Fun2)
+search()
+ls(2)
+?runRefBlast
+?makeFunctionalPrediction
+library(microeco)
+?trans_network
+library(microeco)
+?meco2phyloseq
+library(microeco)
+?trans_network
+library(vegan)
+?envfit
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
+library(microeco)
