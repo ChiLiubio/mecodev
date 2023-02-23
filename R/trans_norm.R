@@ -33,6 +33,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#' \itemize{
 		#'   \item \code{CLR}: Centered log-ratio normalization.
 		#'   \item \code{CCS}: Cumulative sum scaling normalization. Require \code{metagenomeSeq} package to be installed.
+		#'   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
 		#' }
 		#' Methods from \code{\link{decostand}} function:
 		#' \itemize{
@@ -56,7 +57,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 			{
 			abund_table <- self$abund_table
 			
-			method <- match.arg(method, c("CLR", "CCS", "total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
+			method <- match.arg(method, c("CLR", "CCS", "TSS", "total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
 			
 			# use decostand function
 			if(method %in% c("total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log")){
@@ -76,6 +77,10 @@ trans_norm <- R6Class(classname = "trans_norm",
 				## Normalization and Statistical testing
 				obj_1 <- metagenomeSeq::cumNorm(obj, ...)
 				res_table <- t(metagenomeSeq::MRcounts(obj_1, norm = TRUE))
+			}
+			if(method == "TSS"){
+				res_table <- abund_table
+				res_table <- apply(res_table, 1, function(x){x/sum(x)}) %>% t
 			}
 			res_dataset <- clone(self$dataset)
 			res_dataset$otu_table <- as.data.frame(t(res_table))

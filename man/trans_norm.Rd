@@ -81,6 +81,7 @@ Methods for normalization:
 \itemize{
   \item \code{CLR}: Centered log-ratio normalization.
   \item \code{CCS}: Cumulative sum scaling normalization. Require \code{metagenomeSeq} package to be installed.
+  \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
 }
 Methods from \code{\link{decostand}} function:
 \itemize{
