@@ -26,7 +26,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 			self$dataset <- dataset
 		},
 		#' @description
-		#' The function offers some normalization methods, including CLR, CCS and those based on the \code{\link{decostand}} function in vegan package.
+		#' Normalization or transformation methods, including CLR, CCS, TSS, TMM, AST and those based on the \code{\link{decostand}} function in vegan package.
 		#' @param method default NULL; See the following details and available options. \cr 
 		#' \cr 
 		#' Methods for normalization:
@@ -35,9 +35,8 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#'   \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
 		#'   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
 		#'   \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
-		#'   \item \code{AST}: Arc sine square root transformation.
 		#' }
-		#' Methods from \code{\link{decostand}} function:
+		#' Methods based on \code{\link{decostand}} function:
 		#' \itemize{
 		#'   \item \code{total}: divide by margin total (default MARGIN = 1, i.e. rows - samples).
 		#'   \item \code{max}: divide by margin maximum (default MARGIN = 2, i.e. columns - features).
@@ -47,9 +46,13 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#'   \item \code{pa}: scale x to presence/absence scale (0/1).
 		#'   \item \code{log}: logarithmic transformation as suggested by Anderson et al. (2006): log_b (x) + 1 for x > 0, where b is the base of the logarithm; zeros are left as zeros. Higher bases give less weight to quantities and more to presences, and logbase = Inf gives the presence/absence scaling. Please note this is not log(x+1). Anderson et al. (2006) suggested this for their (strongly) modified Gower distance (implemented as method = "altGower" in vegdist), but the standardization can be used independently of distance indices.
 		#' }
+		#' Other methods for transformation:
+		#' \itemize{
+		#'   \item \code{AST}: Arc sine square root transformation.
+		#' }
 		#' @param MARGIN default NULL; 1 = samples, and 2 = features of abundance table; only useful when method comes from \code{\link{decostand}} function.
 		#' @param logbase default exp(1); The logarithm base used in method = "log" or "CLR".
-		#' @param ... parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS".
+		#' @param ... parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or \code{edgeR::normLibSizes} when method = "TMM".
 		#' 
 		#' @return a new microtable object; rows are features.
 		#' @examples
@@ -85,7 +88,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 				res_table <- apply(res_table, 1, function(x){x/sum(x)}) %>% t
 			}
 			if(method == "TMM"){
-				libsize <- edgeR::normLibSizes(abund_table, method = "TMM")
+				libsize <- edgeR::normLibSizes(abund_table, method = "TMM", ...)
 				effec_libsize <- colSums(abund_table) * libsize
 				ref_libsize <- mean(effec_libsize)
 				res_table <- sweep(abund_table, MARGIN = 2, effec_libsize, "/") * ref_libsize

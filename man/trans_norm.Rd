@@ -67,7 +67,7 @@ t1 <- trans_norm$new(dataset = dataset)
 \if{html}{\out{<a id="method-trans_norm-norm"></a>}}
 \if{latex}{\out{\hypertarget{method-trans_norm-norm}{}}}
 \subsection{Method \code{norm()}}{
-The function offers some normalization methods, including CLR, CCS and those based on the \code{\link{decostand}} function in vegan package.
+Normalization or transformation methods, including CLR, CCS, TSS, TMM, AST and those based on the \code{\link{decostand}} function in vegan package.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{trans_norm$norm(method = NULL, MARGIN = NULL, logbase = exp(1), ...)}\if{html}{\out{</div>}}
 }
@@ -83,9 +83,8 @@ Methods for normalization:
   \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
   \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
-  \item \code{AST}: Arc sine square root transformation.
 }
-Methods from \code{\link{decostand}} function:
+Methods based on \code{\link{decostand}} function:
 \itemize{
   \item \code{total}: divide by margin total (default MARGIN = 1, i.e. rows - samples).
   \item \code{max}: divide by margin maximum (default MARGIN = 2, i.e. columns - features).
@@ -94,13 +93,17 @@ Methods from \code{\link{decostand}} function:
   \item \code{standardize}: scale x to zero mean and unit variance (default MARGIN = 2).
   \item \code{pa}: scale x to presence/absence scale (0/1).
   \item \code{log}: logarithmic transformation as suggested by Anderson et al. (2006): log_b (x) + 1 for x > 0, where b is the base of the logarithm; zeros are left as zeros. Higher bases give less weight to quantities and more to presences, and logbase = Inf gives the presence/absence scaling. Please note this is not log(x+1). Anderson et al. (2006) suggested this for their (strongly) modified Gower distance (implemented as method = "altGower" in vegdist), but the standardization can be used independently of distance indices.
+}
+Other methods for transformation:
+\itemize{
+  \item \code{AST}: Arc sine square root transformation.
 }}
 
 \item{\code{MARGIN}}{default NULL; 1 = samples, and 2 = features of abundance table; only useful when method comes from \code{\link{decostand}} function.}
 
 \item{\code{logbase}}{default exp(1); The logarithm base used in method = "log" or "CLR".}
 
-\item{\code{...}}{parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS".}
+\item{\code{...}}{parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or \code{edgeR::normLibSizes} when method = "TMM".}
 }
 \if{html}{\out{</div>}}
 }
