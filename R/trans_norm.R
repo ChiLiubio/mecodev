@@ -32,8 +32,10 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#' Methods for normalization:
 		#' \itemize{
 		#'   \item \code{CLR}: Centered log-ratio normalization.
-		#'   \item \code{CCS}: Cumulative sum scaling normalization. Require \code{metagenomeSeq} package to be installed.
+		#'   \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
 		#'   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
+		#'   \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
+		#'   \item \code{AST}: Arc sine square root transformation.
 		#' }
 		#' Methods from \code{\link{decostand}} function:
 		#' \itemize{
@@ -56,8 +58,8 @@ trans_norm <- R6Class(classname = "trans_norm",
 		norm = function(method = NULL, MARGIN = NULL, logbase = exp(1), ...)
 			{
 			abund_table <- self$abund_table
-			
-			method <- match.arg(method, c("CLR", "CCS", "TSS", "total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
+			method <- match.arg(method, c("CLR", "CCS", "TSS", "TMM", "AST", 
+				"total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
 			
 			# use decostand function
 			if(method %in% c("total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log")){
@@ -82,6 +84,15 @@ trans_norm <- R6Class(classname = "trans_norm",
 				res_table <- abund_table
 				res_table <- apply(res_table, 1, function(x){x/sum(x)}) %>% t
 			}
+			if(method == "TMM"){
+				libsize <- edgeR::normLibSizes(abund_table, method = "TMM")
+				effec_libsize <- colSums(abund_table) * libsize
+				ref_libsize <- mean(effec_libsize)
+				res_table <- sweep(abund_table, MARGIN = 2, effec_libsize, "/") * ref_libsize
+			}
+			if(method == "AST"){
+				res_table <- private$AST(abund_table)
+			}
 			res_dataset <- clone(self$dataset)
 			res_dataset$otu_table <- as.data.frame(t(res_table))
 			res_dataset
@@ -95,6 +106,9 @@ trans_norm <- R6Class(classname = "trans_norm",
 			nzero <- (vec >= tol)
 			LOG <- log(ifelse(nzero, vec, 1), base)
 			ifelse(nzero, LOG - mean(LOG)/mean(nzero), 0.0)
+		},
+		AST = function(x){
+			sign(x) * asin(sqrt(abs(x)))
 		}
 	),
 	lock_objects = FALSE,

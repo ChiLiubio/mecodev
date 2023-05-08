@@ -80,8 +80,10 @@ The function offers some normalization methods, including CLR, CCS and those bas
 Methods for normalization:
 \itemize{
   \item \code{CLR}: Centered log-ratio normalization.
-  \item \code{CCS}: Cumulative sum scaling normalization. Require \code{metagenomeSeq} package to be installed.
+  \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
+  \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
+  \item \code{AST}: Arc sine square root transformation.
 }
 Methods from \code{\link{decostand}} function:
 \itemize{
