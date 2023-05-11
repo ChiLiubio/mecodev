@@ -1,28 +1,31 @@
 #' @title
-#' Abundance table normalization.
+#' Feature table normalization/transformation.
 #'
 #' @description
-#' Abundance table normalization for the otu_table in microtable object.
-#' The input dataset must be a microtable object.
+#' Feature abundance table normalization/transformation for microtable object or data.frame object.
 #'
 #' @export
 trans_norm <- R6Class(classname = "trans_norm",
 	public = list(
 		#' @description
-		#' Get a transposed abundance table in the object. Rows are samples and columns are features. 
+		#' Get a transposed abundance table in the object: rows are samples and columns are features. 
 		#' This can make the further operations same with the traditional ecological methods.
-		#' @param dataset the object of \code{\link{microtable}} Class.
-		#' @return transposed abundance table stored in the object.
+		#' @param dataset the \code{\link{microtable}} object or data.frame object. If it is data.frame object, rows must be features.
+		#' @return data_abund, i.e. transposed abundance table stored in the object.
 		#' @examples
 		#' library(microeco)
 		#' data(dataset)
 		#' t1 <- trans_norm$new(dataset = dataset)
 		initialize = function(dataset = NULL)
 			{
-			abund_table <- dataset$otu_table
+			if(inherits(dataset, "microtable")){
+				abund_table <- dataset$otu_table
+			}else{
+				abund_table <- dataset
+			}
 			abund_table <- t(abund_table)
 			# Now abund_table is a matrix, rows: sample, cols: features
-			self$abund_table <- abund_table
+			self$data_abund <- abund_table
 			self$dataset <- dataset
 		},
 		#' @description
@@ -60,7 +63,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#' newdataset <- t1$norm(method = "CLR")
 		norm = function(method = NULL, MARGIN = NULL, logbase = exp(1), ...)
 			{
-			abund_table <- self$abund_table
+			abund_table <- self$data_abund
 			method <- match.arg(method, c("CLR", "CCS", "TSS", "TMM", "AST", 
 				"total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
 			
@@ -96,9 +99,14 @@ trans_norm <- R6Class(classname = "trans_norm",
 			if(method == "AST"){
 				res_table <- private$AST(abund_table)
 			}
-			res_dataset <- clone(self$dataset)
-			res_dataset$otu_table <- as.data.frame(t(res_table))
-			res_dataset
+			res_table <- as.data.frame(t(res_table))
+			if(inherits(self$dataset, "microtable")){
+				res_dataset <- clone(self$dataset)
+				res_dataset$otu_table <- res_table
+				res_dataset
+			}else{
+				res_table
+			}
 		}
 	),
 	private = list(

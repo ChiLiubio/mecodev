@@ -2,10 +2,9 @@
 % Please edit documentation in R/trans_norm.R
 \name{trans_norm}
 \alias{trans_norm}
-\title{Abundance table normalization.}
+\title{Feature table normalization/transformation.}
 \description{
-Abundance table normalization for the otu_table in microtable object.
-The input dataset must be a microtable object.
+Feature abundance table normalization/transformation for microtable object or data.frame object.
 }
 \examples{
 
@@ -36,7 +35,7 @@ newdataset <- t1$norm(method = "CLR")
 \if{html}{\out{<a id="method-trans_norm-new"></a>}}
 \if{latex}{\out{\hypertarget{method-trans_norm-new}{}}}
 \subsection{Method \code{new()}}{
-Get a transposed abundance table in the object. Rows are samples and columns are features. 
+Get a transposed abundance table in the object: rows are samples and columns are features. 
 This can make the further operations same with the traditional ecological methods.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{trans_norm$new(dataset = NULL)}\if{html}{\out{</div>}}
@@ -45,12 +44,12 @@ This can make the further operations same with the traditional ecological method
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{dataset}}{the object of \code{\link{microtable}} Class.}
+\item{\code{dataset}}{the \code{\link{microtable}} object or data.frame object. If it is data.frame object, rows must be features.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-transposed abundance table stored in the object.
+data_abund, i.e. transposed abundance table stored in the object.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
