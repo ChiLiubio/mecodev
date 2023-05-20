@@ -68,7 +68,13 @@ t1 <- trans_norm$new(dataset = dataset)
 \subsection{Method \code{norm()}}{
 Normalization or transformation methods, including CLR, CCS, TSS, TMM, AST and those based on the \code{\link{decostand}} function in vegan package.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trans_norm$norm(method = NULL, MARGIN = NULL, logbase = exp(1), ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{trans_norm$norm(
+  method = NULL,
+  MARGIN = NULL,
+  logbase = exp(1),
+  Cmin = NULL,
+  ...
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -82,6 +88,7 @@ Methods for normalization:
   \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
   \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
+  \item \code{SRS}: scaling with ranked subsampling method based on the SRS package provided by Lukas Beule and Petr Karlovsky (2020) <DOI:10.7717/peerj.9593>.
 }
 Methods based on \code{\link{decostand}} function:
 \itemize{
@@ -102,7 +109,11 @@ Other methods for transformation:
 
 \item{\code{logbase}}{default exp(1); The logarithm base used in method = "log" or "CLR".}
 
-\item{\code{...}}{parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or \code{edgeR::normLibSizes} when method = "TMM".}
+\item{\code{Cmin}}{default NULL; see Cmin parameter in \code{SRS::SRS} function; Only available when \code{method = "SRS"}.
+If not provided, use the minimum number across all the samples.}
+
+\item{\code{...}}{parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or 
+\code{edgeR::normLibSizes} when method = "TMM" or .}
 }
 \if{html}{\out{</div>}}
 }

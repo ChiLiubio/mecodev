@@ -38,6 +38,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#'   \item \code{CCS}: Cumulative sum scaling normalization based on the \code{metagenomeSeq} package.
 		#'   \item \code{TSS}: Total sum scaling, dividing counts by the sequencing depth.
 		#'   \item \code{TMM}: Trimmed mean of M-values method based on the \code{normLibSizes} function of \code{edgeR} package.
+		#'   \item \code{SRS}: scaling with ranked subsampling method based on the SRS package provided by Lukas Beule and Petr Karlovsky (2020) <DOI:10.7717/peerj.9593>.
 		#' }
 		#' Methods based on \code{\link{decostand}} function:
 		#' \itemize{
@@ -55,16 +56,19 @@ trans_norm <- R6Class(classname = "trans_norm",
 		#' }
 		#' @param MARGIN default NULL; 1 = samples, and 2 = features of abundance table; only useful when method comes from \code{\link{decostand}} function.
 		#' @param logbase default exp(1); The logarithm base used in method = "log" or "CLR".
-		#' @param ... parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or \code{edgeR::normLibSizes} when method = "TMM".
+		#' @param Cmin default NULL; see Cmin parameter in \code{SRS::SRS} function; Only available when \code{method = "SRS"}.
+		#'    If not provided, use the minimum number across all the samples.
+		#' @param ... parameters pass to \code{\link{decostand}} or \code{metagenomeSeq::cumNorm} when method = "CCS" or 
+		#'    \code{edgeR::normLibSizes} when method = "TMM" or .
 		#' 
 		#' @return a new microtable object; rows are features.
 		#' @examples
 		#' newdataset <- t1$norm(method = "log")
 		#' newdataset <- t1$norm(method = "CLR")
-		norm = function(method = NULL, MARGIN = NULL, logbase = exp(1), ...)
+		norm = function(method = NULL, MARGIN = NULL, logbase = exp(1), Cmin = NULL, ...)
 			{
 			abund_table <- self$data_abund
-			method <- match.arg(method, c("CLR", "CCS", "TSS", "TMM", "AST", 
+			method <- match.arg(method, c("CLR", "CCS", "TSS", "TMM", "SRS", "AST", 
 				"total", "max", "frequency", "normalize", "range", "rank", "standardize", "pa", "chi.square", "hellinger", "log"))
 			
 			# use decostand function
@@ -90,6 +94,15 @@ trans_norm <- R6Class(classname = "trans_norm",
 				res_table <- abund_table
 				res_table <- apply(res_table, 1, function(x){x/sum(x)}) %>% t
 			}
+			if(method == "SRS"){
+				newotu <- as.data.frame(t(abund_table))
+				if(is.null(Cmin)){
+					Cmin <- min(colSums(newotu))
+				}
+				res_table <- SRS::SRS(newotu, Cmin = Cmin, set_seed = TRUE, seed = 123)
+				res_table <- t(res_table)
+				colnames(res_table) <- colnames(abund_table)
+			}
 			if(method == "TMM"){
 				libsize <- edgeR::normLibSizes(abund_table, method = "TMM", ...)
 				effec_libsize <- colSums(abund_table) * libsize
@@ -103,6 +116,7 @@ trans_norm <- R6Class(classname = "trans_norm",
 			if(inherits(self$dataset, "microtable")){
 				res_dataset <- clone(self$dataset)
 				res_dataset$otu_table <- res_table
+				res_dataset$tidy_dataset()
 				res_dataset
 			}else{
 				res_table
