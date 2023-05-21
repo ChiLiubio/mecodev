@@ -40,7 +40,7 @@ t1$plot_rarefy(color = "Group")
 \if{latex}{\out{\hypertarget{method-trans_rarefy-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trans_rarefy$new(dataset = NULL, alphadiv = "Shannon", depth = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{trans_rarefy$new(dataset = NULL, alphadiv = "Shannon", depth = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -51,6 +51,8 @@ t1$plot_rarefy(color = "Group")
 \item{\code{alphadiv}}{default "Shannon"; alpha diversity measurement used for the rarefaction; see microtable$cal_alphadiv for all the measurement.}
 
 \item{\code{depth}}{default NULL; an integer vecotr used for the rarefying.}
+
+\item{\code{...}}{parameters passed to \code{rarefy_samples} function of \code{microtable} class, except the sample.size parameter.}
 }
 \if{html}{\out{</div>}}
 }

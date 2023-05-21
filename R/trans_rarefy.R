@@ -10,6 +10,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		#' @param dataset the object of \code{\link{microtable}} Class.
 		#' @param alphadiv default "Shannon"; alpha diversity measurement used for the rarefaction; see microtable$cal_alphadiv for all the measurement.
 		#' @param depth default NULL; an integer vecotr used for the rarefying.
+		#' @param ... parameters passed to \code{rarefy_samples} function of \code{microtable} class, except the sample.size parameter.
 		#' @return res_rarefy stored in the object.
 		#' @examples
 		#' \donttest{
@@ -17,7 +18,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		#' data(dataset)
 		#' t1 <- trans_rarefy$new(dataset = dataset, depth = c(0, 10, 50, 400, 800))
 		#' }
-		initialize = function(dataset = NULL, alphadiv = "Shannon", depth = NULL)
+		initialize = function(dataset = NULL, alphadiv = "Shannon", depth = NULL, ...)
 			{
 			res <- data.frame()
 			for(i in depth){
@@ -29,7 +30,7 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 					inter_res <- cbind.data.frame(SampleID = rownames(inter_res), seqnum = i, value = inter_res[, 1])
 				}else{
 					message("Rarefy data at depth ", i," ...")
-					use_data$rarefy_samples(sample.size = i)
+					use_data$rarefy_samples(sample.size = i, ...)
 					suppressMessages(use_data$cal_alphadiv(measures = alphadiv))
 					inter_res <- use_data$alpha_diversity[, alphadiv, drop = FALSE]
 					inter_res <- data.frame(SampleID = rownames(inter_res), seqnum = i, value = inter_res[, 1])
