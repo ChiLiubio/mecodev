@@ -142,8 +142,8 @@ trans_ts <- R6Class(classname = "trans_ts",
 				}
 			}
 			t1 <- trans_network$new(dataset = self$dataset, cor_method = NULL)
-			# from v 0.12.1
-			# V(network)$RelativeAbundance <- t1$data_relabund[V(network)$name]
+			# from microeco v0.12.1
+			V(network)$RelativeAbundance <- t1$data_relabund[V(network)$name]
 			t1$res_network <- network
 			t1
 		}
