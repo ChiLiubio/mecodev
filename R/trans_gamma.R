@@ -76,7 +76,7 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			if(is.null(self$group)){
 				stop("Please provide the group parameter when creates the object !")
 			}else{
-				all_groups <- unique(dataset$sample_table[, self$group])
+				all_groups <- unique(use_data$sample_table[, self$group])
 			}
 			
 			res_beta <- matrix(0, nrow = length(used_sample_size), ncol = length(all_groups))
