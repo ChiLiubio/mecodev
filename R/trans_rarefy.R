@@ -56,6 +56,9 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		#' @param x_axis_title default "Sequence number"; x axis title.
 		#' @param y_axis_title default NULL; default NULL represents the measure used.
 		#' @param show_legend default TRUE;	whether show the legend in the plot.
+		#' @param show_samplename default FALSE; whether show the sample name in the plot.
+		#' @param samplename_size default 3; the sample name text size. Only available when show_samplename is TRUE.
+		#' @param samplename_color default "grey70"; sample name text color. Only available when show_samplename is TRUE.
 		#' @param ... parameters pass to ggplot2::geom_line (when add_fitting = FALSE) or ggplot2::geom_smooth (when add_fitting = TRUE).
 		#' @return ggplot.
 		#' @examples
@@ -72,6 +75,9 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 			x_axis_title = "Sequence number",
 			y_axis_title = NULL,
 			show_legend = TRUE,
+			show_samplename = FALSE,
+			samplename_size = 3,
+			samplename_color = "grey30",
 			...
 			){
 			alphadiv <- self$measure
@@ -87,9 +93,9 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 			if(is.null(y_axis_title)){
 				y_axis_title <- alphadiv
 			}
+			color_values <- microeco:::expand_colors(color_values, length(unique(rarefy_data[, color])))
 			
-			p <- ggplot(rarefy_data, aes_string(x = "seqnum", y = alphadiv, color = color, fill = color, group = "SampleID")) +
-				scale_color_manual(values = color_values) +
+			p <- ggplot(rarefy_data, aes(x = .data[["seqnum"]], y = .data[[alphadiv]], color = .data[[color]], group = .data[["SampleID"]])) +
 				xlab(x_axis_title) +
 				ylab(y_axis_title)
 			if(show_point == T){
@@ -100,11 +106,18 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 			}else{
 				p <- p + geom_line(...)
 			}
+			p <- p + scale_color_manual(values = color_values)
+
 			p <- p + theme_bw()
 			if(show_legend == F){
 				p <- p + theme(legend.position = "none")
 			}
-			
+			if(show_samplename){
+				submax <- rarefy_data[rarefy_data$seqnum == max(rarefy_data$seqnum), ]
+				
+				p <- p + ggrepel::geom_text_repel(data = submax, aes(.data[["seqnum"]], .data[[alphadiv]], label = .data[["SampleID"]]), size = samplename_size, 
+					color = samplename_color, parse = FALSE)
+			}
 			p
 		},
 		#' @description

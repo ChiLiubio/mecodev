@@ -88,6 +88,9 @@ Plotting the rarefied result.
   x_axis_title = "Sequence number",
   y_axis_title = NULL,
   show_legend = TRUE,
+  show_samplename = FALSE,
+  samplename_size = 3,
+  samplename_color = "grey30",
   ...
 )}\if{html}{\out{</div>}}
 }
@@ -112,6 +115,12 @@ Plotting the rarefied result.
 \item{\code{y_axis_title}}{default NULL; default NULL represents the measure used.}
 
 \item{\code{show_legend}}{default TRUE;    whether show the legend in the plot.}
+
+\item{\code{show_samplename}}{default FALSE; whether show the sample name in the plot.}
+
+\item{\code{samplename_size}}{default 3; the sample name text size. Only available when show_samplename is TRUE.}
+
+\item{\code{samplename_color}}{default "grey70"; sample name text color. Only available when show_samplename is TRUE.}
 
 \item{\code{...}}{parameters pass to ggplot2::geom_line (when add_fitting = FALSE) or ggplot2::geom_smooth (when add_fitting = TRUE).}
 }
