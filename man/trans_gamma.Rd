@@ -5,8 +5,7 @@
 \title{Simulate gamma-beta diversity relationships under specific species distribution.}
 \description{
 Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
-based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
-<doi:10.1038/s41467-020-19228-4>. 
+based on <doi:10.1038/s41467-020-19228-4>. 
 The beta diversity is defined as the average distance-to-centroid value and
 measured as the average distance (or compositional dissimilarity) from one sample to the centroid of the group.
 }
@@ -110,8 +109,10 @@ test1 <- trans_gamma$new(dataset = dataset, group = "Type", method = "bray")
 \if{latex}{\out{\hypertarget{method-trans_gamma-cal_observed}{}}}
 \subsection{Method \code{cal_observed()}}{
 Calculate observed gamma and beta diversity for each group.
+The beta diversity is defined as mean dispersion from the centroid based on the distance matrix.
+The gamma diversity is defined as the total species observed.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_observed(sample_size = NULL, unifrac = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{trans_gamma$cal_observed(sample_size = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -119,8 +120,6 @@ Calculate observed gamma and beta diversity for each group.
 \describe{
 \item{\code{sample_size}}{default NULL; a numeric vector for the rarefied and uniform individual numbers in each sample; 
 If null, use the observed data; If provided, use the rarefied data, e.g. c(500, 2000).}
-
-\item{\code{unifrac}}{default FALSE; whether unifrac index should be calculated; only useful when method = "wei_unifrac" or "unwei_unifrac".}
 }
 \if{html}{\out{</div>}}
 }

@@ -3,8 +3,7 @@
 #'
 #' @description
 #' Simulate gamma-beta diversity relationships under specific species distribution, and plot the result
-#' based on Zhang et al. (2020). Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).
-#' <doi:10.1038/s41467-020-19228-4>. 
+#' based on <doi:10.1038/s41467-020-19228-4>. 
 #' The beta diversity is defined as the average distance-to-centroid value and
 #' measured as the average distance (or compositional dissimilarity) from one sample to the centroid of the group.
 #'
@@ -28,9 +27,6 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		#' }		
 		initialize = function(dataset = NULL, group = NULL, method = "bray", seed = 123
 			){
-			message("Please also cite the article: Zhang et al. (2020). <doi:10.1038/s41467-020-19228-4>")
-			message("Local community assembly mechanisms shape soil bacterial β diversity patterns along a latitudinal gradient. Nat Commun 11, 5428 (2020).\n")
-
 			set.seed(seed)
 			if(!is.null(group)){
 				if(is.null(dataset)){
@@ -51,18 +47,25 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 		},
 		#' @description
 		#' Calculate observed gamma and beta diversity for each group.
+		#' The beta diversity is defined as mean dispersion from the centroid based on the distance matrix.
+		#' The gamma diversity is defined as the total species observed.
 		#'
 		#' @param sample_size default NULL; a numeric vector for the rarefied and uniform individual numbers in each sample; 
 		#'   If null, use the observed data; If provided, use the rarefied data, e.g. c(500, 2000).
-		#' @param unifrac default FALSE; whether unifrac index should be calculated; only useful when method = "wei_unifrac" or "unwei_unifrac".
 		#' @return res_observed in object.
 		#' @examples
 		#' \donttest{
 		#' test1$cal_observed(sample_size = NULL)
 		#' }
-		cal_observed = function(sample_size = NULL, unifrac = FALSE){
+		cal_observed = function(sample_size = NULL){
 			method <- self$method
-
+			if(method %in% c("wei_unifrac", "unwei_unifrac")){
+				unifrac <- TRUE
+				beta_method <- NULL
+			}else{
+				unifrac <- FALSE
+				beta_method <- method
+			}
 			if(is.null(self$dataset)){
 				stop("Please provide the dataset when creates the object !")
 			}else{
@@ -86,19 +89,20 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 				beta_obs_mean <- c()
 				gamma_obs <- c()
 				for(j in all_groups){
-					use_data1 <- clone(use_data)
-					use_data1$sample_table %<>% .[.[, self$group] == j, ]
+					use_data_subset <- clone(use_data)
+					use_data_subset$sample_table %<>% .[.[, self$group] == j, ]
 
 					if(is.null(sample_size)){
-						use_data1$tidy_dataset()
+						use_data_subset$tidy_dataset()
 					}else{
-						suppressMessages(use_data1$rarefy_samples(sample.size = used_sample_size[i]))
+						suppressMessages(use_data_subset$rarefy_samples(sample.size = used_sample_size[i]))
 					}
-					suppressMessages(use_data1$cal_betadiv(method = method, unifrac = unifrac))
-					beta_partition.bdisper <- vegan::betadisper(as.dist(use_data1$beta_diversity[[method]]), group = rep(1, times = nrow(use_data1$sample_table)), type="centroid")
-					beta_partition.distance <- mean(beta_partition.bdisper$distances)
-					beta_obs_mean <- c(beta_obs_mean, beta_partition.distance)
-					gamma_obs <- c(gamma_obs, nrow(use_data1$otu_table))
+					suppressMessages(use_data_subset$cal_betadiv(method = beta_method, unifrac = unifrac))
+					beta_partition_bdisper <- vegan::betadisper(as.dist(use_data_subset$beta_diversity[[method]]), 
+						group = rep(1, times = nrow(use_data_subset$sample_table)), type="centroid")
+					beta_partition_distance <- mean(beta_partition_bdisper$distances)
+					beta_obs_mean <- c(beta_obs_mean, beta_partition_distance)
+					gamma_obs <- c(gamma_obs, nrow(use_data_subset$otu_table))
 				}
 				res_beta[i, ] <- beta_obs_mean
 				res_gamma[i, ] <- gamma_obs
@@ -188,7 +192,9 @@ trans_gamma <- R6Class(classname = "trans_gamma",
 			self$ncom <- ncom
 			self$ind_vect <- ind_vect
 			method <- self$method
-			library(vegan)
+			if(method %in% c("wei_unifrac", "unwei_unifrac")){
+				stop("For the simulation, unifrac index is not available! Please switch to others!")
+			}
 
 			# create a matrix to store all the simulated results
 			beta_obs_matrix_mean <- matrix(0, nrow = length(ind_vect), ncol = length(gamma_vect))
