@@ -21,6 +21,10 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 		initialize = function(dataset = NULL, alphadiv = "Shannon", depth = NULL, ...)
 			{
 			res <- data.frame()
+			if(length(alphadiv) > 1){
+				message("The input alphadiv has multiple indexes! Only use the first one ...")
+				alphadiv %<>% .[1]
+			}
 			for(i in depth){
 				use_data <- clone(dataset)
 				if(i == 0){
@@ -113,7 +117,12 @@ trans_rarefy <- R6Class(classname = "trans_rarefy",
 				p <- p + theme(legend.position = "none")
 			}
 			if(show_samplename){
-				submax <- rarefy_data[rarefy_data$seqnum == max(rarefy_data$seqnum), ]
+				# select the max number for each sample
+				num_order <- lapply(unique(rarefy_data$SampleID), function(x){
+					tmp <- rarefy_data[rarefy_data$SampleID == x, "seqnum"] %>% max
+					which(rarefy_data$SampleID == x & rarefy_data$seqnum == tmp)
+					}) %>% unlist
+				submax <- rarefy_data[num_order, ]
 				
 				p <- p + ggrepel::geom_text_repel(data = submax, aes(.data[["seqnum"]], .data[[alphadiv]], label = .data[["SampleID"]]), size = samplename_size, 
 					color = samplename_color, parse = FALSE)
